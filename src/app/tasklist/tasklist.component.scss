@@ -1,0 +1,25 @@
+#addButton {
+    border: solid black;
+    border-width: thin;
+}
+
+#task-container {
+    .tasks {
+        display: flex;
+        flex-direction: column;
+        li {
+            
+            border: solid black;
+            border-width: thin;
+            border-radius: 4px;
+            margin: 2px;
+            width: 500px;
+        }
+        img {
+            height: auto; 
+            width: auto; 
+            max-width: 25px; 
+            max-height: 25px;
+        }
+    }
+}

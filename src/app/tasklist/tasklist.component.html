@@ -1,0 +1,19 @@
+<h2>To Do</h2>
+
+<div ngbDropdown class="d-inline-block">
+  <button class="btn btn-outline" id="addButton">
+    +
+  </button>
+  <!-- <div ngbDropdownMenu aria-labelledby="addButton">
+    <a ngbDropdownItem>Dropdown Working</a>
+  </div> -->
+</div>
+<div id="task-container">
+  <ul class="tasks">
+    <li *ngFor="let task of tasklist">
+      <span class="badge">{{task.urgency}}</span>{{task.title}}
+      <p>{{task.description}}</p>
+      <img src="../assets/settings.png">
+    </li>
+  </ul>
+</div>
