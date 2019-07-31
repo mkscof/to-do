@@ -1,5 +1,7 @@
 export class Task {
-    constructor(title: String, description: String, urgency: number) {
-        
-    }
+    constructor(
+        title: String, 
+        description: String, 
+        urgency: number
+    ) { }
 }

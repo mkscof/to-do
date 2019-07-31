@@ -19,7 +19,16 @@ export class TaskService {
     return TASKS;
   }
 
-  createTask() {
+  addTask(title: String, description: String, urgency: number): Task {
     this.taskCount += 1;
+    return new Task(title, description, urgency);
+  }
+
+  deleteTask() {
+    this.taskCount -= 1;
+  }
+
+  editTask() {
+
   }
 }

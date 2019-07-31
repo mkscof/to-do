@@ -1,19 +1,36 @@
-<h2>To Do</h2>
+<h2 id="headerTitle">To Do</h2>
 
 <div ngbDropdown class="d-inline-block">
-  <button class="btn btn-outline" id="addButton">
+  <button class="btn btn-primary" id="addButton" ngbDropdownToggle>
     +
   </button>
-  <!-- <div ngbDropdownMenu aria-labelledby="addButton">
-    <a ngbDropdownItem>Dropdown Working</a>
-  </div> -->
+  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+    <form id="addForm">
+      <div class="form-group">
+        <textarea class="form-control" id="titleForm" rows="1" placeHolder="Title..." required></textarea>
+      </div>
+      <div class="form-group">
+        <textarea class="form-control" id="descriptionForm" rows="2" placeHolder="Description..." required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="urgencyForm">Urgency</label>
+        <select multiple class="form-control" id="urgencyForm" required>
+          <option>0</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
 <div id="task-container">
   <ul class="tasks">
     <li *ngFor="let task of tasklist">
-      <span class="badge">{{task.urgency}}</span>{{task.title}}
-      <p>{{task.description}}</p>
       <img src="../assets/settings.png">
+      <span class="badge" id="uBadge">{{task.urgency}}</span>{{task.title}}
+      <p>{{task.description}}</p>
     </li>
   </ul>
 </div>

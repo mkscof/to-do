@@ -25,4 +25,8 @@ export class TasklistComponent implements OnInit {
     this.tasklist = this.taskService.getTasks();
   }
 
+  addTask(form): void {
+    console.log(form.value);
+    //this.tasklist.push(this.taskService.addTask(title, description, urgency));
+  }
 }
