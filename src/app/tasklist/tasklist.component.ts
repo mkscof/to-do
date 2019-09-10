@@ -43,16 +43,13 @@ export class TasklistComponent implements OnInit {
   }
 
   addTask(): void {
-    console.log(this.addForm);
     let taskObj = Object.assign({}, this.addForm.value);
     let newTask: Task = this.taskService.newTask(
       taskObj.title,
       taskObj.desc,
       taskObj.urgency
     );
-    console.log(newTask);
     this.tasklist.push(newTask);
-    console.log(this.tasklist);
     // this.addForm.reset();
     this.getTasks();
   }

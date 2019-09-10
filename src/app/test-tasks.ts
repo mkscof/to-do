@@ -1,8 +1,8 @@
 import { Task } from './task';
 
 export const TASKS: Task[] = [
-    {title: 'Cook', description: 'Cook yourself dinner you degenerate', urgency: 2, id: 0},
-    {title: 'Clean', description: 'Chicks don\'t dig a dirty room', urgency: 1, id: 1},
-    {title: 'Car Wash', description: '', urgency: 3, id: 2},
-    {title: 'Finish this app', description: 'Time\'s a wastin\'', urgency: 0, id: 3}
-];
+    new Task('Cook', 'Cook yourself dinner you degenerate', 2, 0),
+    new Task('Clean', 'Chicks don\'t dig a dirty room', 1, 1),
+    new Task('Car Wash', '', 3, 2),
+    new Task('Finish this app', 'Time\'s a wastin\'', 0, 3)
+]

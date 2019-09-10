@@ -31,7 +31,6 @@ export class TaskService {
   newTask(title: String, description: String, urgency: number): Task {
     this.taskCount += 1;
     this.idInc += 1;
-    console.log(title, description, urgency);
     return new Task(title, description, urgency, this.idInc);
   }
 
