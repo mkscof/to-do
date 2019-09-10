@@ -20,8 +20,12 @@ export class TaskService {
     this.idInc = 3;
   }
 
-  getTasks(): Observable<Task[]> {
-    return this.http.get<Task[]>(this.tasksUrl);
+  // getTasks(): Observable<Task[]> {
+  //   return this.http.get<Task[]>(this.tasksUrl);
+  // }
+
+  getTasks() {
+    return TASKS;
   }
 
   newTask(title: String, description: String, urgency: number): Task {

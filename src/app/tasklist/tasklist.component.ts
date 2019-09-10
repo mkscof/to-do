@@ -33,9 +33,13 @@ export class TasklistComponent implements OnInit {
     });
   }
 
-  getTasks(): void {
-    this.taskService.getTasks()
-      .subscribe(tasklist => this.tasklist = tasklist);
+  // getTasks(): void {
+  //   this.taskService.getTasks()
+  //     .subscribe(tasklist => this.tasklist = tasklist);
+  // }
+
+  getTasks() {
+    return this.taskService.getTasks();
   }
 
   addTask(): void {
