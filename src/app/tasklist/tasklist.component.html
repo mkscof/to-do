@@ -1,35 +1,47 @@
 <h2 id="headerTitle">To Do</h2>
 
 <div ngbDropdown class="d-inline-block">
-  <button class="btn btn-primary" id="addButton" ngbDropdownToggle>
+  <button class="btn btn-success" id="addButton" ngbDropdownToggle>
     +
   </button>
   <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-    <form id="addForm">
+    <form [formGroup]="addForm" (ngSubmit) ="addTask()">
       <div class="form-group">
-        <textarea class="form-control" id="titleForm" rows="1" placeHolder="Title..." required></textarea>
+        <label for="title">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="title">
       </div>
       <div class="form-group">
-        <textarea class="form-control" id="descriptionForm" rows="2" placeHolder="Description..." required></textarea>
+        <label for="desc">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          formControlName="desc">
       </div>
       <div class="form-group">
-        <label for="urgencyForm">Urgency</label>
-        <select multiple class="form-control" id="urgencyForm" required>
-          <option>0</option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
+        <label for="urgency">Urgency</label>
+        <select
+          type="number"
+          class="form-control"
+          formControlName="urgency">
+          <option *ngFor="let urgency of urgencies" [value]="urgency">
+            {{ urgency }}
+          </option>
         </select>
       </div>
-      <button type="submit" class="btn btn-success">Submit</button>
+      <button class="btn btn-success" type="submit" [disabled]="addForm.pristine">Submit</button>
     </form>
   </div>
 </div>
 <div id="task-container">
   <ul class="tasks">
     <li *ngFor="let task of tasklist">
+      <img src="../assets/delete.png" ng-click="deleteTask()">
       <img src="../assets/settings.png">
-      <span class="badge" id="uBadge">{{task.urgency}}</span>{{task.title}}
+      <span class="badge" id="uBadge">{{task.urgency}}</span>
+      <span id="titleSpan">{{task.title}}</span>
       <p>{{task.description}}</p>
     </li>
   </ul>
