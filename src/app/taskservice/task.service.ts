@@ -9,15 +9,12 @@ import { TASKS } from '../test-tasks';
   providedIn: 'root'
 })
 export class TaskService {
-  taskCount: number;
-  idInc: number;
   private tasksUrl = 'api/tasks';  // URL to web api
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.taskCount = 0;
-    this.idInc = 3;
+    
   }
 
   // getTasks(): Observable<Task[]> {
@@ -28,10 +25,8 @@ export class TaskService {
     return TASKS;
   }
 
-  newTask(title: String, description: String, urgency: number): Task {
-    this.taskCount += 1;
-    this.idInc += 1;
-    return new Task(title, description, urgency, this.idInc);
+  newTask(title: String, description: String, urgency: number, id: number): Task {
+    return new Task(title, description, urgency, id);
   }
 
   editTask() {

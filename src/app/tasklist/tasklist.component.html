@@ -37,12 +37,13 @@
 </div>
 <div id="task-container">
   <ul class="tasks">
-    <li *ngFor="let task of tasklist">
-      <img src="../assets/delete.png" ng-click="deleteTask()">
-      <img src="../assets/settings.png">
+    <li *ngFor="let task of tasklist; trackBy: trackTask">
+      <img src="../assets/delete.png" (click)="deleteTask($event)">
+      <img src="../assets/edit.png">
       <span class="badge" id="uBadge">{{task.urgency}}</span>
       <span id="titleSpan">{{task.title}}</span>
       <p>{{task.description}}</p>
+      <span id="elemId">{{task.id}}</span>
     </li>
   </ul>
 </div>
