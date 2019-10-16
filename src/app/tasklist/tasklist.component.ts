@@ -15,7 +15,7 @@ export class TasklistComponent implements OnInit {
   urgencies = [0, 1, 2, 3];
   addForm: FormGroup;
   editForm: FormGroup;
-  taskCount: number;
+  taskIndex: number;
 
   constructor(private taskService: TaskService) {
     this.addForm = this.initAddForm();
@@ -23,8 +23,8 @@ export class TasklistComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.taskCount = 0;
     this.tasklist = TASKS;
+    this.taskIndex = this.tasklist.length;
     // this.initForm();
     console.log('Is it worth it to use this over Trello? Hmm...');
   }
@@ -39,7 +39,8 @@ export class TasklistComponent implements OnInit {
 
   private initEditForm() {
     return new FormGroup({
-      'desc': new FormControl()
+      'desc': new FormControl(),
+      'urgency': new FormControl()
     });
   }
 
@@ -66,9 +67,9 @@ export class TasklistComponent implements OnInit {
       taskObj.title,
       taskObj.desc,
       taskObj.urgency,
-      this.taskCount
+      this.taskIndex
     );
-    this.taskCount += 1;
+    this.taskIndex += 1;
     this.tasklist.push(newTask);
     this.getTasks();
     // this.addForm.reset();
@@ -87,11 +88,13 @@ export class TasklistComponent implements OnInit {
     let item = data.target.parentElement;
     let newDesc = this.editForm.value.desc;
     let itemId = Number(item.parentElement.parentElement.children[5].textContent);
-    this.tasklist.forEach(task => {
-      if(task.id == itemId) {
-        task.description = newDesc;
+    for(let i = 0; i < this.tasklist.length; i++) {
+      if(this.tasklist[i].id == itemId) {
+        this.tasklist[i].description = newDesc;
+        this.tasklist[i].urgency = (this.editForm.value.urgency) ? this.editForm.value.urgency : task.urgency;
+        break;
       }
-    });
+    }
     this.getTasks();
   }
 }

@@ -50,6 +50,17 @@
                 class="form-control"
                 formControlName="desc">
             </div>
+            <div class="form-group">
+              <label for="urgency">Urgency</label>
+              <select
+                type="number"
+                class="form-control"
+                formControlName="urgency">
+                <option *ngFor="let urgency of urgencies" [value]="urgency">
+                  {{ urgency }}
+                </option>
+              </select>
+            </div>
             <button class="btn btn-success" type="submit">Submit</button>
           </form>
         </div>
