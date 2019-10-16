@@ -38,8 +38,22 @@
 <div id="task-container">
   <ul class="tasks">
     <li *ngFor="let task of tasklist; trackBy: trackTask">
-      <img src="../assets/delete.png" (click)="deleteTask($event)">
-      <img src="../assets/edit.png">
+      <img src="../assets/delete.png" (click)="deleteTask($event)">        
+      <div ngbDropdown>
+        <img src="../assets/edit.png" ngbDropdownToggle>
+        <div ngbDropdownMenu>
+          <form [formGroup]="editForm" (ngSubmit) ="editTask($event)">
+            <div class="form-group">
+              <label for="desc">Edit Description</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="desc">
+            </div>
+            <button class="btn btn-success" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
       <span class="badge" id="uBadge">{{task.urgency}}</span>
       <span id="titleSpan">{{task.title}}</span>
       <p>{{task.description}}</p>

@@ -14,10 +14,12 @@ export class TasklistComponent implements OnInit {
   tasklist: Task[];
   urgencies = [0, 1, 2, 3];
   addForm: FormGroup;
+  editForm: FormGroup;
   taskCount: number;
 
   constructor(private taskService: TaskService) {
-    this.addForm = this.initForm();
+    this.addForm = this.initAddForm();
+    this.editForm = this.initEditForm();
   }
 
   ngOnInit() {
@@ -27,11 +29,17 @@ export class TasklistComponent implements OnInit {
     console.log('Is it worth it to use this over Trello? Hmm...');
   }
 
-  private initForm() {
+  private initAddForm() {
     return new FormGroup({
       'title': new FormControl(),
       'desc': new FormControl(),
       'urgency': new FormControl(Validators.required)
+    });
+  }
+
+  private initEditForm() {
+    return new FormGroup({
+      'desc': new FormControl()
     });
   }
 
@@ -66,11 +74,23 @@ export class TasklistComponent implements OnInit {
     // this.addForm.reset();
   }
 
-  deleteTask(data, tPos): void {
+  deleteTask(data): void {
     let item = data.target.parentElement;
     let itemId = Number(item.children[5].textContent);
     this.tasklist = this.tasklist.filter(task => {
       return task.id != itemId
+    });
+    this.getTasks();
+  }
+
+  editTask(data): void {
+    let item = data.target.parentElement;
+    let newDesc = this.editForm.value.desc;
+    let itemId = Number(item.parentElement.parentElement.children[5].textContent);
+    this.tasklist.forEach(task => {
+      if(task.id == itemId) {
+        task.description = newDesc;
+      }
     });
     this.getTasks();
   }
