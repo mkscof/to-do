@@ -91,7 +91,7 @@ export class TasklistComponent implements OnInit {
     for(let i = 0; i < this.tasklist.length; i++) {
       if(this.tasklist[i].id == itemId) {
         this.tasklist[i].description = newDesc;
-        this.tasklist[i].urgency = (this.editForm.value.urgency) ? this.editForm.value.urgency : task.urgency;
+        this.tasklist[i].urgency = (this.editForm.value.urgency) ? this.editForm.value.urgency : this.tasklist[i].urgency;
         break;
       }
     }
